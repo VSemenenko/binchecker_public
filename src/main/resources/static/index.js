@@ -1,9 +1,8 @@
 
 function sendBin() {
-    var bin = {'value':123456};
     $.ajax({
         type: 'post',
-        data: {value:123456},
+        data: {value : document.getElementById("bin_input").value},
         url: "/test",
         success: function (profile) {
             alert('ok')
