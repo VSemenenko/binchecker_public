@@ -19,7 +19,7 @@ public class BinController {
     @RequestMapping("/")
     public String adminPage(Model model) {
         List<Bin> binList = binService.getLastTen();
-        model.addAttribute("lastTenBins", binList);
+        model.addAttribute("bins", binList);
         return "index";
     }
 }
