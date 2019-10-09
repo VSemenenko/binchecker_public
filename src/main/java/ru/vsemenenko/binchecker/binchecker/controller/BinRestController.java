@@ -3,6 +3,7 @@ package ru.vsemenenko.binchecker.binchecker.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -18,8 +19,7 @@ public class BinRestController {
     BinService binService;
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public Bin mvcmethod(@RequestParam(value = "value")int value){
-        int val = value;
+    public ResponseEntity<Bin> mvcmethod(@RequestParam(value = "value")int value){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Bin> response = restTemplate.exchange(
                 "https://lookup.binlist.net/"+value,
@@ -27,6 +27,6 @@ public class BinRestController {
                 null,
                 new ParameterizedTypeReference<Bin>(){});
         Bin bin = response.getBody();
-        return bin;
+        return new ResponseEntity<Bin>(bin, HttpStatus.OK);
     }
 }
