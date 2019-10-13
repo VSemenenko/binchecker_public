@@ -18,26 +18,29 @@
     <form>
         <div class="form-group">
             <label class="h4">Введите номер bin</label>
-            <input type="text" class="form-control" id="bin_input" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="text" class="form-control"  id="bin_input" placeholder="Enter bin">
         </div>
         <button type="button" class="btn btn-primary submit_button" onclick="sendBin()">Проверить</button>
         <div id="status_message">
         </div>
+        <div id="bin_information_table"></div>
     </form>
-
 <div class="line"></div>
-    <table class="table table-striped bin_table">
-        <thead>
-        <tr>
-            <th class="h6">last bins</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bin : ${bins}">
-            <td scope="row" th:text="${bin.value}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="bin_table_parent">
+        <table class="table table-striped bin_table">
+            <thead>
+            <tr>
+                <th class="h6">last bins</th>
+            </tr>
+            </thead>
+            <tbody id = "binList">
+            <tr th:each="bin : ${bins}">
+                <td scope="row" th:text="${bin.value}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </div>
 </body>

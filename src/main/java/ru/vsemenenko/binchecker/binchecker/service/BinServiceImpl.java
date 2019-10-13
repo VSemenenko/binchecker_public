@@ -3,6 +3,7 @@ package ru.vsemenenko.binchecker.binchecker.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vsemenenko.binchecker.binchecker.dao.BinDAO;
+import ru.vsemenenko.binchecker.binchecker.model.Bank;
 import ru.vsemenenko.binchecker.binchecker.model.Bin;
 
 import java.util.List;
@@ -36,5 +37,14 @@ public class BinServiceImpl implements BinService{
     @Override
     public List<Bin> getLastTen() {
         return binDAO.getLastTen();
+    }
+
+    public boolean checkBin(Bin bin){
+        return binDAO.checkBin(bin);
+    }
+
+    @Override
+    public Bank getBankByBinValue(Bin bin) {
+        return binDAO.getBankByBinValue(bin);
     }
 }

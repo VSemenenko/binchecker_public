@@ -1,6 +1,7 @@
 package ru.vsemenenko.binchecker.binchecker.service;
 
 import org.springframework.stereotype.Service;
+import ru.vsemenenko.binchecker.binchecker.model.Bank;
 import ru.vsemenenko.binchecker.binchecker.model.Bin;
 
 import java.util.List;
@@ -16,5 +17,9 @@ public interface BinService {
     void add(Bin value);
 
     List<Bin> getLastTen();
+
+    boolean checkBin(Bin bin);
+
+    Bank getBankByBinValue(Bin bin);
 
 }

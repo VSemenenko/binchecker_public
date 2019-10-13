@@ -2,6 +2,7 @@ package ru.vsemenenko.binchecker.binchecker.dao;
 
 
 import org.springframework.stereotype.Repository;
+import ru.vsemenenko.binchecker.binchecker.model.Bank;
 import ru.vsemenenko.binchecker.binchecker.model.Bin;
 
 import java.util.List;
@@ -18,5 +19,9 @@ public interface BinDAO {
     void add(Bin value);
 
     List<Bin> getLastTen();
+
+    boolean checkBin(Bin bin);
+
+    Bank getBankByBinValue(Bin bin);
 
 }
