@@ -21,7 +21,7 @@ public class BinRestController {
     @Autowired
     BinService binService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<BankBinListDTO> checkBin(@RequestBody Bin bin){
         Bank bank;
         if(binService.checkBin(bin)){
@@ -35,29 +35,12 @@ public class BinRestController {
                 null,
                 new ParameterizedTypeReference<Bin>() {
                 });
-        if(HttpStatus.OK.equals(response.getStatusCode())){
-            bin.compliteBin(response.getBody());
-            binService.add(bin);
+        if(HttpStatus.OK.equals(response.getStatusCode())&&response.getBody() != null){
+                bin.compliteBin(response.getBody());
+                binService.add(bin);
         } else {
             return new ResponseEntity<BankBinListDTO>((BankBinListDTO) null, HttpStatus.NOT_FOUND);
         }
-//        if(!binService.checkBin(bin)) {
-//            RestTemplate restTemplate = new RestTemplate();
-//        int binValue = bin.getValue();
-//        ResponseEntity<Bin> response = restTemplate.exchange(
-//                "https://lookup.binlist.net/" + binValue,
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<Bin>() {
-//                });
-//        if(HttpStatus.OK.equals(response.getStatusCode())){
-//            bin = response.getBody();
-//            bin.setValue(binValue);
-//            binService.add(bin);
-//        }
-//    }else {
-//        bin = binService.getByValue(bin);
-//    }
         return new ResponseEntity<BankBinListDTO>(new BankBinListDTO(bin.getBank(), binService.getLastTen()), HttpStatus.OK);
     }
 }

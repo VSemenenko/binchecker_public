@@ -3,7 +3,7 @@ function sendBin() {
     var bin = {value: document.getElementById("bin_input").value};
     $.ajax({
         type: 'post',
-        url: "/test",
+        url: "/",
         data: JSON.stringify(bin),
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -33,7 +33,8 @@ function sendBin() {
             }
         },
         error: function () {
-        document.getElementById("status_message").innerHTML='<div class="alert alert-danger" role="alert"> <strong>Bin not found</strong></div>';
+            document.getElementById("bin_information_table").innerHTML='';
+            document.getElementById("status_message").innerHTML='<div class="alert alert-danger" role="alert"> <strong>Bin not found</strong></div>';
         }
     })
 }
